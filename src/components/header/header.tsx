@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import { Div } from "./headerStyle";
 const Nav =()=>{
     return(
-        <div>
-            <Link to="/">
+        <Div>
+            {/* <Link to="/">
                 home
-            </Link>
+            </Link> */}
             <h2>blog</h2>
-        </div>
+        </Div>
     )
 }
 export default Nav;
