@@ -2,7 +2,7 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Main,Div} from './homeStyle';
+import   './homeStyle.scss';
 
 
 const Home =()=>{
@@ -22,22 +22,23 @@ const Home =()=>{
     }
     return(
         <div>
-            <div>
+            <div className="top">
                 <p>
                     Post your own views and perspectives as blog by signing up <Link to="">here</Link>.
                 </p>
             </div>
-            <Main>
+            <div className="main">
                 {post.map((obj,i)=>(
-                    <Div key={i}>
+                    <div className="div" key={i}>
                         <h3>{obj.title}</h3>
                         <p>{obj.author.username}</p>
                         <Link to={`/post/${obj._id}`}>
                             <button>view post</button>
                         </Link>
-                    </Div>
+                    </div>
+
                 ))}
-            </Main>
+            </div>
         </div>
     )
 }
