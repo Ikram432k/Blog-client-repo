@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import { Div } from "./headerStyle";
+import "./headerStyle.scss";
 const Nav =()=>{
+    const navStyle={
+        color:"white",
+        textDecoration: 'none'
+        };
     return(
-        <Div>
-            {/* <Link to="/">
-                home
-            </Link> */}
+        <div className="divd">
+            <Link style={navStyle} to="/">
             <h2>blog</h2>
-        </Div>
+            </Link>
+        </div>
     )
 }
 export default Nav;

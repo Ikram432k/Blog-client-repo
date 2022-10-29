@@ -1,12 +1,16 @@
-import styled from "styled-components";
-export const Div = styled.div`
+// import styled from "styled-components";
+.divd{
 display: flex;
-justify-content: space-between;
+justify-content: center;
 align-items: center;
+font-size: 2rem;
 text-transform: uppercase;
-background-color: rgb(83, 45, 189);
+background-color: rgb(255, 255, 255);
 color:  white;
 padding: 20px;
+    h2{
+        color: black;
+    }
     p{
     font-family: 'Orbitron', sans-serif;
         font-size: 25px;
@@ -15,5 +19,4 @@ padding: 20px;
         color:white;
         background-color: black;
     }
-
-    `;
+}
