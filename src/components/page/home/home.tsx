@@ -21,7 +21,7 @@ const Home =()=>{
         }
     }
     return(
-        <div>
+        <div className="posts">
             <div className="top">
                 <p>
                     Post your own views and perspectives as blog by signing up <Link to="">here</Link>.
@@ -31,7 +31,9 @@ const Home =()=>{
                 {post.map((obj,i)=>(
                     <div className="div" key={i}>
                         <h3>{obj.title}</h3>
-                        <p>{obj.author.username}</p>
+                        <p>posted by- {obj.author.username}</p>
+                        <p><i className='far fa-comment'></i>{obj.comments.length}</p>
+                        
                         <Link to={`/post/${obj._id}`}>
                             <button>view post</button>
                         </Link>
