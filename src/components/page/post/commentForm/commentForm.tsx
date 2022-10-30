@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import './formstyle.scss';
 interface link{
     postId:string
 }
@@ -27,20 +28,24 @@ const Form=({postId}:link)=>{
         })
     }
     return(
-        <div>
+        <div className="formdiv">
             <form>
                 <p>your comment will be public</p>
+                <div className="field">
                 <input
+                className="input"
                 type="text"
                 name="name"
                 placeholder="Enter your name"
                 onChange={handleChange}
                 />
                 <textarea
+                className="input"
                 name="comment"
                 placeholder="Enter your comment"
                 onChange={handleChange}
                 />
+                </div>
                 <button onClick={submitForm}>save</button>
             </form>
         </div>
