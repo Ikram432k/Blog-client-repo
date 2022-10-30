@@ -1,3 +1,4 @@
+$secondary-color: #182E49;
 .comment{
     padding: 20px;
     h3{
@@ -5,14 +6,18 @@
         font-size: 1.5rem;
     }
     max-width: 700px;
-    margin: 1rem auto 25px;
+    margin: 0px auto 25px;
 }
 .contentCom{
     border: 1px solid black;
-    padding: 10px;
+    color: wheat;
+    padding: 25px;
     margin: 20px;
     font-size: 20px;
     border-radius: 5px;
-    background: #6d6b6b;
+    background: $secondary-color;
+    .name{
+        margin-bottom: 8px;
+    }
 
 }
