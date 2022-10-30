@@ -27,8 +27,8 @@ const Comment =({postId}:link)=>{
             <h3>Comments</h3>
             {comments.map((obj,i)=>(
                 <div className="contentCom" key={i}>
-                    <p>{obj.name}</p>
-                    <p>{obj.comment}</p>
+                    <p className="name">{obj.name} says ,</p>
+                    <p>"{obj.comment}"</p>
                 </div>
             ))}
         </div>
