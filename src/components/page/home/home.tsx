@@ -24,7 +24,7 @@ const Home =()=>{
         <div className="posts">
             <div className="top">
                 <p>
-                    Post your own views and perspectives as blog by signing up <Link to="">here</Link>.
+                    Post your own views and perspectives as blog by signing up <Link to="/signup">here</Link>.
                 </p>
             </div>
             <div className="main">
