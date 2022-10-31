@@ -4,9 +4,10 @@ $secondary-color: #182E49;
 $color: #f5f5f5;
 $bg-color: rgba(0, 0, 0, 0.6);
 .posts{
-    background-color: #ffffff;
-    // background-color: #375C79;
+    // background-color: #ffffff;
+    background-color: #999999;
     overflow: auto;
+    height: 100vh;
 }
 .top{
     text-align: left;
