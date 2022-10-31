@@ -29,7 +29,7 @@ const Form=({postId}:link)=>{
     }
     return(
         <div className="formdiv">
-            <form>
+            <form className="commentForm">
                 <p>your comment will be public</p>
                 <div className="field">
                 <input
