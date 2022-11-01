@@ -2,17 +2,26 @@ import './loginStyle.scss';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
-interface obj {
+interface usercredentials {
     username: string,
     password: string
+}
+interface userDetails {
+    username: string,
+    _id: string
 }
 const Login = () => {
 
 
-    const [user, setUser] = useState<obj>({
+    const [user, setUser] = useState<usercredentials>({
         username: '',
         password: ''
     })
+    const [getUserId,setGetuserId] = useState<userDetails>({
+        username:'',
+        _id:''
+    });
+    const [token,setToken] =useState<string>("");
 
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -32,13 +41,15 @@ const Login = () => {
             username: '',
             password: ''
         });
-        console.log(user);
     }
 
     const loginUser = async () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/login`, user);
-            console.log(response.data);
+            const tokenId = response.data.token;
+            const databody = response.data.body;
+            setGetuserId({...databody});
+            setToken(tokenId);
         } catch (err) {
             return err;
         }
@@ -48,7 +59,11 @@ const Login = () => {
         if (validation()) {
             loginUser();
         }
+        localStorage.setItem('username',getUserId.username);
+        localStorage.setItem('id',getUserId._id);
+        localStorage.setItem('token',token);
         clearForm();
+
     }
     return (
         <div className='mainpage'>
