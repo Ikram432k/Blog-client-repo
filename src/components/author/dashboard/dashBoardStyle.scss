@@ -1,0 +1,50 @@
+.dashContent{
+    padding: 20px;
+    margin: 2rem auto 0 auto;
+    width: 65rem;
+    color: white;
+}
+.dashContainer{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 30px; 
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.dashHead{
+    // border: 1px solid black;
+    border-bottom: 1px solid white ;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+// .dashMain{
+//     display: flex;
+
+// }
+.dashCard-in{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 30px;
+}
+.dashCard{
+    display: flex;
+    justify-content: space-between;
+    // width: inherit;
+
+}
+.dashbtn{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashHead{
+    p{
+        padding: 10px 0px;
+    } 
+}
+.cardtitle{
+    padding: 5px 0px;
+}
+.cardtitle p{
+padding: 10px 0px;
+}
