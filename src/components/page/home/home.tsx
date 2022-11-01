@@ -15,7 +15,7 @@ const Home =()=>{
         const response = await axios.get('http://localhost:3000/api/posts');
         const posts = response.data.posts;
         setPost(posts);
-        console.log(posts);
+        // console.log(posts);
         }catch(err){
             return err;
         }
@@ -33,7 +33,7 @@ const Home =()=>{
                         <h3>{obj.title}</h3>
                         <p>posted by- {obj.author.username}</p>
                         <p><i className='far fa-comment'></i>{obj.comments.length}</p>
-                        
+
                         <Link to={`/post/${obj._id}`}>
                             <button>view post</button>
                         </Link>
