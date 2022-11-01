@@ -6,10 +6,7 @@ interface usercredentials {
     username: string,
     password: string
 }
-interface userDetails {
-    username: string,
-    _id: string
-}
+
 const Login = () => {
 
 
@@ -17,11 +14,6 @@ const Login = () => {
         username: '',
         password: ''
     })
-    const [getUserId,setGetuserId] = useState<userDetails>({
-        username:'',
-        _id:''
-    });
-    const [token,setToken] =useState<string>("");
 
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -48,8 +40,8 @@ const Login = () => {
             const response = await axios.post(`http://localhost:3000/api/login`, user);
             const tokenId = response.data.token;
             const databody = response.data.body;
-            setGetuserId({...databody});
-            setToken(tokenId);
+            localStorage.setItem('user',JSON.stringify(databody))
+            localStorage.setItem('token',tokenId);
         } catch (err) {
             return err;
         }
@@ -59,12 +51,12 @@ const Login = () => {
         if (validation()) {
             loginUser();
         }
-        localStorage.setItem('username',getUserId.username);
-        localStorage.setItem('id',getUserId._id);
-        localStorage.setItem('token',token);
         clearForm();
 
     }
+    let currentUser = localStorage.getItem('user')!;
+    let lstoken = localStorage.getItem('token')!;
+
     return (
         <div className='mainpage'>
             <div className='pageForm'>
@@ -99,7 +91,7 @@ const Login = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <Link to={`/login`}>
+                    <Link to={`/dashboard/${lstoken}/${currentUser}`}>
                         <button onClick={submitForm}>Login</button>
                     </Link>
                 </form>
