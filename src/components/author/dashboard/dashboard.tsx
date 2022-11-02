@@ -6,18 +6,18 @@ import '../dashboard/dashBoardStyle.scss';
 
 const Dashboard =()=>{
 
-    interface userDetails {
-    username: string,
-    _id: string,
-    posts: Array<string>
-}
+//     interface userDetails {
+//     username: string,
+//     _id: string,
+//     posts: Array<string>
+// }
 
 useEffect(()=>{
     setUserDetails();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
-
-const[lsUser,setUser] =useState<userDetails>({
+const[lsUser,setUser] =useState({
     posts:[],
     username:'',
     _id:''
@@ -34,24 +34,29 @@ const[allPosts,setAllPost] = useState<any[]>([]);
     const setUserDetails=()=>{
         const currentUser = JSON.parse(localStorage.getItem('user')! );
         const token = localStorage.getItem('token')!;
-        setUser({...currentUser});
+        setUser(currentUser);
         setToken(token);
         console.log(lsUser,userToken);
     }
 
-    // const deletePost=async()=>{
-
-    //     try{
-    //     const response = await axios.post(`http://localhost:3000/api/posts/:postid/delete`);
-    //     }catch(err){
-    //         return err;
-    //     }
-    // }
+    const deletePost=async(id: string)=>{
+        try{
+        const response = await axios.post(`http://localhost:3000/api/posts/${id}/delete`,{
+            headers: {
+              'Authorization': userToken
+            }
+          });
+        console.log(response);
+        }catch(err){
+            return err;
+        }
+    }
 
 
     const getPost =async()=>{
         const arr = lsUser.posts;
-        for(let i=0;i<arr.length;i++){
+        const l = arr.length
+        for(let i=0;i<l;i++){
             try{
                 const response = await axios.get(`http://localhost:3000/api/posts/${arr[i]}`);
                 console.log(response.data.post);
@@ -70,7 +75,7 @@ const[allPosts,setAllPost] = useState<any[]>([]);
             <div className='dashContainer'>
                 <div className="dashHead">
                     <h2>User : {lsUser.username}</h2>
-                    <p>Total number of posts : {(lsUser.posts).length}</p>
+                    <p>Total number of posts : {lsUser.posts.length}</p>
                 </div>
                 <div className="dashMain">
                 {allPosts.map((obj,i)=>(
@@ -82,7 +87,7 @@ const[allPosts,setAllPost] = useState<any[]>([]);
                             </div>
                             <div>
                                 {/* <i className='far fa-edit'></i> */}
-                                <button>
+                                <button onClick={(e:any)=>deletePost(obj._id)}>
                                     <i className='fas fa-trash'></i>
                                 </button>
                             </div>
