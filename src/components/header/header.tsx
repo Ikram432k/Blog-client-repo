@@ -5,10 +5,19 @@ const Nav =()=>{
         color:"white",
         textDecoration: 'none'
         };
+
+    const logout=()=>{
+        localStorage.clear();
+    }
     return(
         <div className="divd">
             <Link style={navStyle} to="/">
             <h2>blog</h2>
+            </Link>
+            <Link to="/">
+                <button onClick={logout}>
+            <i className="fa fa-sign-out"></i>
+            </button>
             </Link>
         </div>
     )
