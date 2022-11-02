@@ -1,5 +1,5 @@
 import './loginStyle.scss';
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
 interface usercredentials {
@@ -9,7 +9,7 @@ interface usercredentials {
 
 const Login = () => {
 
-
+    const navigate = useNavigate();
     const [user, setUser] = useState<usercredentials>({
         username: '',
         password: ''
@@ -42,6 +42,7 @@ const Login = () => {
             const databody = response.data.body;
             localStorage.setItem('user',JSON.stringify(databody))
             localStorage.setItem('token',tokenId);
+             navigate("/dashboard");
         } catch (err) {
             return err;
         }
@@ -54,8 +55,6 @@ const Login = () => {
         clearForm();
 
     }
-    let currentUser = localStorage.getItem('user')!;
-    let lstoken = localStorage.getItem('token')!;
 
     return (
         <div className='mainpage'>
@@ -91,9 +90,7 @@ const Login = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <Link to={`/dashboard/${lstoken}/${currentUser}`}>
                         <button onClick={submitForm}>Login</button>
-                    </Link>
                 </form>
             </div>
         </div>
