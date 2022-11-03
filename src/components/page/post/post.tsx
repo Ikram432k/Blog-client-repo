@@ -18,7 +18,6 @@ const Post =()=>{
         //  console.log(id);   
         const response = await axios.get(`http://localhost:3000/api/posts/${id}`);
         const data = response.data.post;
-        console.log(data);
         let temp = [];
         temp.push(data);
         setPost(temp);
