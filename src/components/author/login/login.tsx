@@ -15,6 +15,8 @@ const Login = () => {
         password: ''
     })
 
+    const[getUser,setGetuser]=useState({});
+
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
@@ -40,15 +42,17 @@ const Login = () => {
             const response = await axios.post(`http://localhost:3000/api/login`, user);
             const tokenId = response.data.token;
             const databody = response.data.body;
-            localStorage.setItem('user',JSON.stringify(databody))
+            setGetuser(databody);
+            // localStorage.setItem('user',JSON.stringify(databody))
             localStorage.setItem('token',tokenId);
-             navigate("/dashboard");
+            navigate(`/dashboard/${databody._id}/${databody.username}`);
         } catch (err) {
             return err;
         }
     }
 
-    const submitForm = () => {
+    const submitForm = (e: any) => {
+        e.preventDefault()
         if (validation()) {
             loginUser();
         }
