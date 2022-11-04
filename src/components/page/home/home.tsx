@@ -35,7 +35,7 @@ const Home =()=>{
                         <p><i className='far fa-comment'></i>{obj.comments.length}</p>
 
                         <Link to={`/post/${obj._id}`}>
-                            <button>view post</button>
+                            <button className="btn">view post</button>
                         </Link>
                     </div>
 
