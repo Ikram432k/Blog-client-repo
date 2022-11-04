@@ -1,5 +1,6 @@
 .viewPost{
     display: flex;
+    gap: 10px;
     // justify-content: center;
     // align-items: center;
 
@@ -11,29 +12,59 @@
     align-items: center;  
     // width: 70vh;
     height: auto;
-    padding: 20px;
+    padding: 25px;
     width: 550px;
     margin: 0px auto 25px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    button{
+      margin-top: 5px;
+      border: 1px solid white;
+    }
          .titlearea{
         width: inherit;
         height: auto;
+        margin-bottom: 10px;
+        background: transparent;
+        font-size: 1.5rem;
+        color: white;
+        border: 0;
     }
          .textarea{
-        width: inherit;
+          font-size: 1rem;
+          color: white;
+        width: 550px;
     height: 250px;
+    margin-bottom: 10px;
+    background: transparent;
+    border: 0;
+
     }
 }
 .viewComment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
     border: 1px solid black;
     color: wheat;
     padding: 10px;
     margin: 10px;
     font-size: 15px;
-    // border-radius: 5px;
+    border-radius: 5px;
     background: #182E49;
     border-bottom:2px solid black;
     margin-top:10px;
     padding-bottom:10px;
+}
+.comment-trash{
+  font-size: 1rem;
+  border: 0;
+  background: transparent;  
+  color: white; 
+  transition: all 0.5s ease 0s; 
+}
+.comment-trash:hover{
+  color:red;
 }
 .postComment {
     // padding: 20px;
@@ -42,10 +73,11 @@
     margin: 0px auto 25px;
     background-color: rgba(99, 99, 99, 0.4);
     width: 40rem;
-    height: 20rem;
+    height: 25rem;
     padding: 1rem;
     overflow: auto;
     cursor: pointer;
+    border-radius: 8px;
     border-bottom:2px solid black;
     &::-webkit-scrollbar {
         width: 1vw;
@@ -57,17 +89,6 @@
         background-color: #7775;
       }
 }
-// {
-//     margin:auto;
-
-
-//       h4{
-//         margin:0;
-//       }
-//       p{
-//         margin-top:10px;
-//       }
-//     }
-//     .details{
-
-//     }
+.edit-post-btn{
+  gap: 20px;
+}
