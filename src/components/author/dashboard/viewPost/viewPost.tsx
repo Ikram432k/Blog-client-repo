@@ -1,36 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import '../viewPost/viewPostStyle.scss';
-// interface display{
-//     displays:{    
-//         show:boolean
-//     };
-//     id:{
-//         onepostid:string
-//     };
-// }
-interface display{
-    show:boolean,
-    onepostid:string
+// interface param{shows:{
+//     show:boolean
+// };
+
+// } 
+interface id{
+    postid:string
 }
-const ViewPost =({show,onepostid}:display)=>{
+const ViewPost =({postid}:id)=>{
     axios.defaults.headers.common = {'Authorization': `bearer ${localStorage.getItem('token')}`}
     useEffect(()=>{
         postContainer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     const[post,setPost] = useState<any>([])
-    const[newPost,setNewPost] = useState<object>({
-        title:'',
-        text:''
-    })
     const handleChange=(e: any)=>{
         setPost({...post,[e.target.name]:e.target.value})
+        setViewPost();
         console.log(post)
     }
     const submitForm =async()=>{
         try{
-            const response = await axios.post(`http://localhost:3000/api/posts/${onepostid}/update`,post);
+            const response = await axios.post(`http://localhost:3000/api/posts/${postid}/update`,post);
             console.log(response.data);
         }catch(err){
             return err
@@ -39,7 +32,7 @@ const ViewPost =({show,onepostid}:display)=>{
     const postContainer =async()=>{
         try{
         //  console.log(id);   
-        const response = await axios.get(`http://localhost:3000/api/posts/${onepostid}`)
+        const response = await axios.get(`http://localhost:3000/api/posts/${postid}`)
         const data = response.data.post;
         setPost(data);
         console.log(post);
@@ -55,7 +48,7 @@ const ViewPost =({show,onepostid}:display)=>{
     const[comments,setComments] =useState<any[]>([])
     const getcomment=async()=>{
         try{
-            const response = await axios.get(`http://localhost:3000/api/posts/${onepostid}/postComments`);
+            const response = await axios.get(`http://localhost:3000/api/posts/${postid}/postComments`);
             const data = response.data;
             setComments(data);
             // console.log(comments);
@@ -64,17 +57,25 @@ const ViewPost =({show,onepostid}:display)=>{
         }
     }
 
-    const deletePostComment=async(id: string)=>{
+    const deletePostComment=async(commentid: string)=>{
         try{
-        const response = await axios.post(`http://localhost:3000/api/posts/${onepostid}/comment/${id}`);
+        const response = await axios.post(`http://localhost:3000/api/posts/${postid}/comment/${commentid}`);
         console.log(response);
         getcomment();
         }catch(err){
             return err;
         }
     }
+    const[show,setShow] =useState<boolean>(false);
+    const setViewPost=()=>{
+        setShow(true);
+    }
+    const closeBtn=(e :any)=>{
+        e.preventDefault();
+        setShow(false);
+    }
     return (
-        <div className="viewPost" style={{display: show ? 'block' : 'none' }}>
+        <div className="viewPost" >
             <form className="showPost">
                 <textarea
                 className="titlearea"
@@ -88,19 +89,24 @@ const ViewPost =({show,onepostid}:display)=>{
                 value={post.text}
                 onChange={handleChange}
                 />
-                <button onClick={submitForm}>submit</button>
+                <div className="edit-post-btn" style={{display: show ? 'flex' : 'none' }}>
+                    <button onClick={submitForm}>save</button>
+                    <button onClick={closeBtn}>cancel</button>
+                </div>
             </form>
             <div className="postComment">
             <h3>Comments</h3>
             {comments.map((obj,i)=>(
                 <div className="viewComment" key={i}>
-                    <p className="name">{obj.name} says ,</p>
-                    <p>"{obj.comment}"</p>
                     <div>
-                                    {/* <i className='far fa-edit'></i> */}
-                                    <button onClick={(e:any)=>deletePostComment(obj._id)}>
-                                        <i className='fas fa-trash'></i>
-                                    </button>
+                        <p className="name">{obj.name} says ,</p>
+                        <p>"{obj.comment}"</p>
+                    </div>
+                    <div>
+                        {/* <i className='far fa-edit'></i> */}
+                        <button className="comment-trash" onClick={(e:any)=>deletePostComment(obj._id)}>
+                            <i className='fas fa-trash'></i>
+                        </button>
                     </div>
                 </div>
             ))}
@@ -109,3 +115,4 @@ const ViewPost =({show,onepostid}:display)=>{
     )
 }
 export default ViewPost;
+// style={{display: show ? 'block' : 'none' }}
