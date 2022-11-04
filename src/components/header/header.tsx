@@ -15,8 +15,8 @@ const Nav =()=>{
             <h2>blog</h2>
             </Link>
             <Link to="/">
-                <button onClick={logout}>
-            <i className="fa fa-sign-out"></i>
+            <button onClick={logout}>
+            <i className='fas fa-sign-out-alt'></i>
             </button>
             </Link>
         </div>
