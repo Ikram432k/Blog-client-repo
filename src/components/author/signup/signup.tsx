@@ -94,7 +94,7 @@ const Signup =()=>{
                     />
                 </div>
                 <Link to={`/login`}>
-                    <button onClick={submitForm}>sign-up</button>
+                    <button className='loginBtn' onClick={submitForm}>sign-up</button>
                 </Link>
             </form>
         </div>
