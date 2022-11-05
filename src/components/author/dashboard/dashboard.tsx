@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../dashboard/dashBoardStyle.scss';
+import { compareAsc, format } from 'date-fns'
 import ViewPost from './viewPost/viewPost';
+import moment from 'moment';
 
 const Dashboard =()=>{
 
@@ -18,7 +20,7 @@ useEffect(()=>{
 
 const[userToken,setToken] =useState<string>('');
 
-const[allPosts,setAllPost] = useState<Array<{ _id: string, title: string ,comments: Array<[]>}>>([]); 
+const[allPosts,setAllPost] = useState<Array<{ _id: string, title: string ,comments: Array<[]>,timestamp: Date}>>([]); 
 
 const[post,setPost] = useState<any>([])
     const handleChange=(e: any)=>{
@@ -71,6 +73,12 @@ const[post,setPost] = useState<any>([])
         e.preventDefault();
         setShow(false);
     }
+    const formattime=(time:Date)=>{
+        
+        // return time.toLocaleDateString("en-gb",{year: "numeric",month: "short",day: "numeric",hour: "numeric"})
+        return moment(time).format('MMMM Do YYYY, h:mm:ss a');
+    }
+
     return(
         <div className="dashContent">
 
@@ -116,6 +124,7 @@ const[post,setPost] = useState<any>([])
                                 <div className='cardtitle'>
                                     <h3>Title : {obj.title}</h3>
                                     <p><i className='far fa-comment'></i> {obj.comments.length}</p>
+                                    <p>Lastly Updated on {formattime(obj.timestamp)}</p>
                                 </div>
                                 <div>
                                     {/* <i className='far fa-edit'></i> */}
@@ -134,6 +143,10 @@ const[post,setPost] = useState<any>([])
 }
 export default Dashboard;
 
+
+function padTo2Digits(arg0: number) {
+    throw new Error('Function not implemented.');
+}
 // ,{
 //     headers: {
 //       'Authorization': userToken
