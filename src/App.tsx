@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router,Route,Routes } from 'react-router-dom';
 import Nav from "./components/header/header";
 import Home from './components/page/home/home';
@@ -21,6 +21,7 @@ body{
 }
 `;
 function App() {
+
   return (
     <Router>
       <GlobalStyle />
@@ -28,7 +29,7 @@ function App() {
       <Routes>
         <Route path='*' element={<Home/>} />
         <Route path='/post/:id' element={<Post/>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/dashboard/:userid/:username' element={<Dashboard/>}/>
       </Routes>
