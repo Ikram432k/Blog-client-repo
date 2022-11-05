@@ -1,6 +1,6 @@
 import './loginStyle.scss';
 import { Link ,useNavigate} from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 interface usercredentials {
     username: string,
@@ -9,13 +9,15 @@ interface usercredentials {
 
 const Login = () => {
 
+
     const navigate = useNavigate();
+
     const [user, setUser] = useState<usercredentials>({
         username: '',
         password: ''
     })
 
-    const[getUser,setGetuser]=useState({});
+    const [errMsg,setMsg] = useState();
 
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -40,10 +42,13 @@ const Login = () => {
     const loginUser = async () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/login`, user);
+            if(response.data.info){
+                setMsg(response.data.info.message);
+                return;
+            }
+            console.log(response)
             const tokenId = response.data.token;
             const databody = response.data.body;
-            setGetuser(databody);
-            // localStorage.setItem('user',JSON.stringify(databody))
             localStorage.setItem('token',tokenId);
             navigate(`/dashboard/${databody._id}/${databody.username}`);
         } catch (err) {
@@ -57,7 +62,6 @@ const Login = () => {
             loginUser();
         }
         clearForm();
-
     }
 
     return (
@@ -93,6 +97,7 @@ const Login = () => {
                             placeholder="Please enter your password"
                             onChange={handleChange}
                         />
+                        <p>{errMsg}</p>
                     </div>
                         <button className="loginBtn"onClick={submitForm}>Login</button>
                 </form>
