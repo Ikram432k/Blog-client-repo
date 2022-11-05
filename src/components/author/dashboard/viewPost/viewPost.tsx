@@ -35,20 +35,24 @@ const ViewPost =({postid}:id)=>{
         const response = await axios.get(`http://localhost:3000/api/posts/${postid}`)
         const data = response.data.post;
         setPost(data);
+        if(data.comments.length===0){
+            return;
+        }
+        getcomment();
         console.log(post);
         }catch(err){
             return err;
         }
     }
 
-    useEffect(()=>{
-        getcomment();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    // useEffect(()=>{
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[]);
     const[comments,setComments] =useState<any[]>([])
     const getcomment=async()=>{
         try{
             const response = await axios.get(`http://localhost:3000/api/posts/${postid}/postComments`);
+            // if (!response) 
             const data = response.data;
             setComments(data);
             // console.log(comments);
@@ -115,4 +119,3 @@ const ViewPost =({postid}:id)=>{
     )
 }
 export default ViewPost;
-// style={{display: show ? 'block' : 'none' }}
