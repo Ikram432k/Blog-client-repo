@@ -1,8 +1,8 @@
 // import styled from "styled-components";
-.divd{
+.header-div{
 display: flex;
-justify-content: center;
-align-items: left;
+justify-content: space-between;
+// align-items: left;
 font-size: 2rem;
 text-transform: uppercase;
 background-color: #080A0E;
@@ -15,4 +15,18 @@ padding: 20px;
         letter-spacing: 3px;
     }
 
+}
+.header-icon{
+    font-size: 1.3rem;
+    border: 0;
+    background: transparent;  
+    color: gray; 
+    transition: all 0.5s ease 0s; 
+  }
+  .header-icon:hover{
+    color: white;
+}
+.header-btn{
+    display: flex;
+    // justify-content: flex-end;
 }
