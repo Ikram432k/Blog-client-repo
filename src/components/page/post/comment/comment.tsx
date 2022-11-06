@@ -15,7 +15,7 @@ const Comment =({postId}:link)=>{
         try{
             const response = await axios.get(`http://localhost:3000/api/posts/${postId}/postComments`);
             const data = response.data;
-            setComments(data);
+            setComments([...data]);
             // console.log(comments);
         }catch(err){
             return err;
