@@ -12,7 +12,7 @@ const Form=({postId}:link)=>{
     const handleChange =(e: any)=>{
         setData({...commentData,[e.target.name]:e.target.value})
     }
-    const submitForm =async ()=>{
+    const submitForm =async (e:any)=>{
         try{
         const response = await axios.post(`http://localhost:3000/api/posts/${postId}/comment`,commentData);
         console.log(response.data);
