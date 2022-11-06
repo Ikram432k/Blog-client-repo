@@ -16,8 +16,11 @@ const Login = () => {
         username: '',
         password: ''
     })
+    const [errMsg,setMsg] = useState<string>();
 
-    const [errMsg,setMsg] = useState();
+    useEffect(()=>{
+        setMsg("");
+    },[user])
 
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
