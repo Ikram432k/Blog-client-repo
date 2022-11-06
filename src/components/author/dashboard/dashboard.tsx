@@ -39,7 +39,6 @@ const[post,setPost] = useState<any>([])
     const setUserDetails=()=>{
         const token = localStorage.getItem('token')!;
         setToken(token);
-        console.log(userToken);
     }
 
     const deletePost=async(id: string)=>{
@@ -56,14 +55,13 @@ const[post,setPost] = useState<any>([])
 
 
     const getPost =async()=>{
-            try{
-                const response = await axios.get(`http://localhost:3000/api/posts/${userid}/userposts`);
-                const data = response.data.posts;
-                setAllPost(data);
-                console.log(allPosts);
-                }catch(err){
-                    return err;
-                }
+        try{
+            const response = await axios.get(`http://localhost:3000/api/posts/${userid}/userposts`);
+            const data = response.data.posts;
+            setAllPost(data);
+        }catch(err){
+            return err;
+        }
     }
     const[show,setShow] =useState<boolean>(false);
     const setViewPost=()=>{
@@ -74,8 +72,6 @@ const[post,setPost] = useState<any>([])
         setShow(false);
     }
     const formattime=(time:Date)=>{
-        
-        // return time.toLocaleDateString("en-gb",{year: "numeric",month: "short",day: "numeric",hour: "numeric"})
         return moment(time).format('MMMM Do YYYY, h:mm:ss a');
     }
 
@@ -113,8 +109,8 @@ const[post,setPost] = useState<any>([])
                         />
                     </div>
                     <div className='form-btn'>
-                        <button onClick={submitForm}>submit</button>
-                        <button onClick={displayNone}>Cancel</button>
+                        <button className='head-btn' onClick={submitForm}>submit</button>
+                        <button className='head-btn' onClick={displayNone}>Cancel</button>
                     </div>
                 </form>
                 <div className="dashMain">
@@ -123,7 +119,6 @@ const[post,setPost] = useState<any>([])
                             <div className='dashCard'>
                                 <div className='cardtitle'>
                                     <h3>Title : {obj.title}</h3>
-                                    <p><i className='far fa-comment'></i> {obj.comments.length}</p>
                                     <p>Lastly Updated on {formattime(obj.timestamp)}</p>
                                 </div>
                                 <div>
@@ -142,13 +137,3 @@ const[post,setPost] = useState<any>([])
     )
 }
 export default Dashboard;
-
-
-function padTo2Digits(arg0: number) {
-    throw new Error('Function not implemented.');
-}
-// ,{
-//     headers: {
-//       'Authorization': userToken
-//     }
-//   }
