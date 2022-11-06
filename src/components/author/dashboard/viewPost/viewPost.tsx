@@ -48,13 +48,23 @@ const ViewPost =({postid}:id)=>{
     // useEffect(()=>{
     // // eslint-disable-next-line react-hooks/exhaustive-deps
     // },[]);
-    const[comments,setComments] =useState<any[]>([])
+    const[comments,setComments] =useState<any[]>([]);
+    const[emptyMsg,setEmptyMsg] =useState<string>();
+    const[empMsg,setEmpMsg] =useState<boolean>(false);
+    useEffect(()=>{
+        setEmpMsg(true);
+    },[emptyMsg])
     const getcomment=async()=>{
         try{
             const response = await axios.get(`http://localhost:3000/api/posts/${postid}/postComments`);
-            // if (!response) 
+            if (response.data.message){
+                setEmptyMsg(response.data.message);
+            } 
             const data = response.data;
-            setComments(data);
+            console.log(data);
+            console.log(comments);
+
+            setComments([...data]);
             // console.log(comments);
         }catch(err){
             return err;
@@ -100,6 +110,8 @@ const ViewPost =({postid}:id)=>{
             </form>
             <div className="postComment">
             <h3>Comments</h3>
+            {/* <p><i className='far fa-comment'></i> {post.comments.length}</p> */}
+            <p style={{display: empMsg ? 'block' : 'none' }}>{emptyMsg}</p>
             {comments.map((obj,i)=>(
                 <div className="viewComment" key={i}>
                     <div>
