@@ -1,11 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import '../viewPost/viewPostStyle.scss';
-// interface param{shows:{
-//     show:boolean
-// };
 
-// } 
 interface id{
     postid:string
 }
@@ -31,7 +27,6 @@ const ViewPost =({postid}:id)=>{
     }
     const postContainer =async()=>{
         try{
-        //  console.log(id);   
         const response = await axios.get(`http://localhost:3000/api/posts/${postid}`)
         const data = response.data.post;
         setPost(data);
@@ -44,10 +39,6 @@ const ViewPost =({postid}:id)=>{
             return err;
         }
     }
-
-    // useEffect(()=>{
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // },[]);
     const[comments,setComments] =useState<any[]>([]);
     const[emptyMsg,setEmptyMsg] =useState<string>();
     const[empMsg,setEmpMsg] =useState<boolean>(false);
@@ -119,7 +110,6 @@ const ViewPost =({postid}:id)=>{
                         <p>"{obj.comment}"</p>
                     </div>
                     <div>
-                        {/* <i className='far fa-edit'></i> */}
                         <button className="comment-trash" onClick={(e:any)=>deletePostComment(obj._id)}>
                             <i className='fas fa-trash'></i>
                         </button>
