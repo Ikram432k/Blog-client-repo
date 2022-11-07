@@ -18,6 +18,15 @@ body{
   background-attachment: fixed;
   background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  &::-webkit-scrollbar {
+    width: 1vw;
+}
+&::-webkit-scrollbar-track {
+    background-color: #5555;
+}
+&::-webkit-scrollbar-thumb {
+    background-color: #7775;
+}
 }
 `;
 function App() {
