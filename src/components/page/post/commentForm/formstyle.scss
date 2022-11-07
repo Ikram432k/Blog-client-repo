@@ -1,4 +1,8 @@
 $secondary-color: #182E49;
+form{
+    display: flex;
+    flex-direction: column;
+}
 .formdiv{
     padding: 20px;
     h3{
@@ -17,7 +21,6 @@ $secondary-color: #182E49;
     border-radius: 5px;
     background: $secondary-color;
     input{
-        width:10rem;
         height:1.5rem;
         border:0px;
         background-color:#aaa;
@@ -32,8 +35,6 @@ $secondary-color: #182E49;
         border-radius: 2px;
         border-color: none;
         margin: 10px 0 10px 0;
-        width: 449px;
-        height: 79px;
     }
     .field{
         display: flex;
@@ -45,6 +46,7 @@ $secondary-color: #182E49;
         text-transform: uppercase;
         border: 0px;
         color: white;
+        margin: 10px 0 10px 0;
         // margin-top: 15px;
         background-color: black;
         text-decoration: none;
