@@ -33,10 +33,6 @@ const Post =()=>{
                     <h2>{obj.title}</h2>
                     <p className="post-bottom">{obj.text}</p>
                     </div>
-                    {/* {obj.comments.map((ele: string,i: Key )=>(
-                        <Comment key={i} commentId={ele}/>
-                    ))} */}
-                    <Form postId={obj._id}/>
                     <Comment postId={obj._id}/>
                 </div>
             ))}
