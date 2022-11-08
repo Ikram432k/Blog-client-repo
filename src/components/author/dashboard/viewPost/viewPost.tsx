@@ -34,7 +34,6 @@ const ViewPost =({postid}:id)=>{
             return;
         }
         getcomment();
-        console.log(post);
         }catch(err){
             return err;
         }
@@ -52,11 +51,7 @@ const ViewPost =({postid}:id)=>{
                 setEmptyMsg(response.data.message);
             } 
             const data = response.data;
-            console.log(data);
-            console.log(comments);
-
             setComments([...data]);
-            // console.log(comments);
         }catch(err){
             return err;
         }
