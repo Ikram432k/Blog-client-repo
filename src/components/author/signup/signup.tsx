@@ -57,7 +57,7 @@ const Signup =()=>{
                 <h2>
                 Sign up to create your account
                 </h2>
-                <Link to="/login">Or login if account already exists</Link>
+                {/* <Link to="/login">Or login if account already exists</Link> */}
             </div>
             <form className='loginForm'>
                 <div className='box'>
@@ -93,10 +93,16 @@ const Signup =()=>{
                     onChange={handleChange}
                     />
                 </div>
+                <div className='box'>
                 <Link to={`/login`}>
                     <button className='loginBtn' onClick={submitForm}>sign-up</button>
                 </Link>
+                </div>
+                <div className='formHead'>
+                <Link to="/login">Or login if account already exists</Link>
+                </div>
             </form>
+
         </div>
     </div>
     )
