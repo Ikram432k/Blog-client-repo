@@ -4,8 +4,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import   './homeStyle.scss';
 
+interface userName{
+    user:string
+}
+const Home =(user:userName)=>{
+    // const[visibleP,setVisible]=useState<boolean>(true)
 
-const Home =()=>{
     useEffect(()=>{
         getPost();
     },[]);
@@ -22,9 +26,9 @@ const Home =()=>{
     }
     return(
         <div className="posts">
-            <div className="top">
+            <div className="top" >
                 <p>
-                    Post your own views and perspectives as blog by signing up <Link to="/signup">here</Link>.
+                    Post your own views and perspectives as blog by signing up <Link to='/signup'>signing up <i className='fas fa-sign-in-alt'></i></Link> or <Link to='/login'>loging in <i className='fas fa-sign-in-alt'></i></Link>.
                 </p>
             </div>
             <div className="main">
@@ -37,6 +41,7 @@ const Home =()=>{
                         <Link to={`/post/${obj._id}`}>
                             <button className="btn">view post</button>
                         </Link>
+                        
                     </div>
 
                 ))}
