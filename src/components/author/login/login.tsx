@@ -6,9 +6,17 @@ interface usercredentials {
     username: string,
     password: string
 }
-
-const Login = () => {
-
+interface propsFunction{
+    getUser:Function
+}
+const Login = (props:propsFunction) => {
+    useEffect(()=>{
+        if(localStorage.getItem('userName')){
+            navigate(`*`);
+            // alert(`Already logged in as ${localStorage.getItem('userName')}`)
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     const navigate = useNavigate();
 
@@ -21,6 +29,8 @@ const Login = () => {
     useEffect(()=>{
         setMsg("");
     },[user])
+
+
 
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -49,10 +59,11 @@ const Login = () => {
                 setMsg(response.data.info.message);
                 return;
             }
-            console.log(response)
             const tokenId = response.data.token;
             const databody = response.data.body;
             localStorage.setItem('token',tokenId);
+            localStorage.setItem('userName',databody.username);
+            props.getUser(databody);
             navigate(`/dashboard/${databody._id}/${databody.username}`);
         } catch (err) {
             return err;
@@ -67,6 +78,7 @@ const Login = () => {
         clearForm();
     }
 
+
     return (
         <div className='mainpage'>
             <div className='pageForm'>
@@ -74,7 +86,7 @@ const Login = () => {
                     <h2>
                         Sign in to your account
                     </h2>
-                    <Link to="/signup">Or sign up for a new account</Link>
+                    {/* <Link to="/signup">Or sign up for a new account</Link> */}
                 </div>
                 <form className='loginForm'>
                     <div className='box'>
@@ -102,7 +114,12 @@ const Login = () => {
                         />
                         <p>{errMsg}</p>
                     </div>
+                    <div className='box'>
                         <button className="loginBtn"onClick={submitForm}>Login</button>
+                    </div>
+                    <div className='formHead'>
+                    <Link to="/signup">Or sign up for a new account</Link>
+                </div>
                 </form>
             </div>
         </div>
