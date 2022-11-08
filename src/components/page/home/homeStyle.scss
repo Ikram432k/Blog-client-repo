@@ -1,12 +1,8 @@
-// import styled from "styled-components";
 $primary-color: #375C79;
 $secondary-color: #182E49;
 $color: #f5f5f5;
 $bg-color: rgba(0, 0, 0, 0.6);
 .posts{
-    // background-color: #ffffff;
-    // background-color: #999999;
-    // overflow: auto;
     height: 100vh;
     &::-webkit-scrollbar {
         width: 1vw;
@@ -19,11 +15,22 @@ $bg-color: rgba(0, 0, 0, 0.6);
       }
 }
 .top{
-    text-align: left;
+    color: white;
+    text-align: center;
     padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
     p{
         font-size: 1rem;
+        
     }  
+    a{
+        color: white;
+        text-decoration: none;
+        // border-bottom: 2px solid black;
+    }
+    a:hover{
+        padding-bottom: 5px;
+    }
 }
 .main{
 display: grid;
@@ -32,10 +39,9 @@ grid-template-columns: repeat(3,1fr);
 gap:3rem;
 margin:0;
 padding:3rem;
-// background-color: $bg-color;
 font-family: 'Montserrat', sans-serif;
 @media only screen and (max-width:768px){
-    grid-template-columns: repeat(1,0.8fr);
+    grid-template-columns: repeat(1,1fr);
     padding:1.5rem;
 }  }
 
@@ -47,7 +53,6 @@ margin: 2rem;
 cursor: pointer;
 text-align: center;
 color:white;
-// border: 1px solid #3b52c2;;
 padding: 15px;
 border-radius: 5px;
 font-family:  -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
@@ -78,5 +83,8 @@ p{
     letter-spacing: 2px;
     margin-bottom:10px;
 
+}
+@media only screen and (max-width:768px){
+margin: 1rem;
 }
 }
