@@ -3,6 +3,9 @@
     gap: 10px;
     // justify-content: center;
     // align-items: center;
+    @media only screen and (max-width:768px){
+    flex-direction: column;
+    }
 
 }
 .showPost{
@@ -39,6 +42,13 @@
     background: transparent;
     border: 0;
 
+    }
+    @media only screen and (max-width:768px){
+      width: 270px;
+      padding: 15px;
+      .textarea{
+        width: inherit;
+      }
     }
 }
 .viewComment {
@@ -90,6 +100,11 @@
       }
       &::-webkit-scrollbar-thumb {
         background-color: #7775;
+      }
+      @media only screen and (max-width:768px){
+        width: 270px;
+        border-bottom: 0;
+        padding: 12px;
       }
 }
 .edit-post-btn{
