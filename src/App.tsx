@@ -30,15 +30,21 @@ body{
 }
 `;
 function App() {
-
+  const [user,setUser] =useState({
+    _id:'',
+    username:''
+  })
+  const getUser =(username: React.SetStateAction<{ _id: string; username: string; }>)=>{
+    setUser(username);
+  }
   return (
     <Router>
       <GlobalStyle />
-      <Nav />
+      <Nav user={user}/>
       <Routes>
-        <Route path='*' element={<Home/>} />
+        <Route path='*' element={<Home user={user.username}/>} />
         <Route path='/post/:id' element={<Post/>} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login getUser={getUser}/>} />
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/dashboard/:userid/:username' element={<Dashboard/>}/>
       </Routes>
