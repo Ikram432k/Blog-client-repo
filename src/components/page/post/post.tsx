@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Key, useEffect, useState } from "react";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "./comment/comment";
-import Form from "./commentForm/commentForm";
 import './poststyle.scss';
 const Post =()=>{
     const {id} = useParams();
@@ -12,7 +12,7 @@ const Post =()=>{
         postContainer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-    const[post,setPost] = useState<any[]>([])
+    const[post,setPost] = useState<Array<{ _id: string, title: string ,text: string, author: {username:string},timestamp: Date}>>([]);
     const postContainer =async()=>{
         try{
         //  console.log(id);   
@@ -25,13 +25,20 @@ const Post =()=>{
             return err;
         }
     }
+    const formattime=(time:Date)=>{
+        return moment(time).format('MMMM Do YYYY, h:mm:ss a');
+    }
     return(
         <div className="post">
             {post.map((obj,i)=>(
                 <div className="content" key={i}>
                     <div className="post-content">
-                    <h2>{obj.title}</h2>
-                    <p className="post-bottom">{obj.text}</p>
+                        <h2>{obj.title}</h2>
+                        <p className="post-bottom">{obj.text}</p>
+                        <div className="userDate">
+                            <p>Author: {obj.author.username}</p>
+                            <p>{formattime(obj.timestamp)}</p>
+                        </div>
                     </div>
                     <Comment postId={obj._id}/>
                 </div>
