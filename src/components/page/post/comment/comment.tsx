@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import './commentStyle.scss';
 import '../commentForm/formstyle.scss';
+import moment from "moment";
 
 interface link{
     postId:string
@@ -15,8 +16,8 @@ const Comment =({postId}:link)=>{
         getcomment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[commentData]);
-    const[comments,setComments] =useState<any[]>([])
-    const getcomment=async(id=postId)=>{
+    const[comments,setComments] = useState<Array<{ _id: string, name: string ,comment: string,timestamp: Date}>>([]);
+    const getcomment=async()=>{
         try{
             const response = await axios.get(`http://localhost:3000/api/posts/${postId}/postComments`);
             const data = response.data;
@@ -32,8 +33,8 @@ const Comment =({postId}:link)=>{
     const submitForm =async (e:any)=>{
         e.preventDefault();
         try{
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const response = await axios.post(`http://localhost:3000/api/posts/${postId}/comment`,commentData);
-        console.log(response.data);
         closeForm();
         }catch(err){
             return err;
@@ -44,6 +45,9 @@ const Comment =({postId}:link)=>{
             name:'',
             comment:''
         })
+    }
+    const formattime=(time:Date)=>{
+        return moment(time).format('MMMM Do YYYY, h:mm:ss a');
     }
     return(
         <div className="comment">
@@ -73,7 +77,8 @@ const Comment =({postId}:link)=>{
                 {comments.map((obj,i)=>(
                     <div className="contentCom" key={i}>
                         <p className="name">{obj.name} says ,</p>
-                        <p>"{obj.comment}"</p>
+                        <p className="name">"{obj.comment}"</p>
+                        <p>Posted on {formattime(obj.timestamp)}</p>
                     </div>
                 ))}
             </div>
