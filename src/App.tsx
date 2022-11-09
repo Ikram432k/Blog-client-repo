@@ -4,9 +4,9 @@ import Nav from "./components/header/header";
 import Home from './components/page/home/home';
 import Post from './components/page/post/post';
 import { createGlobalStyle } from 'styled-components';
-import Login from './components/author/login/login';
-import Signup from './components/author/signup/signup';
-import Dashboard from './components/author/dashboard/dashboard';
+import Login from './components/page/login/login';
+import Signup from './components/page/signup/signup';
+import Dashboard from './components/page/dashboard/dashboard';
 import bgImage from './components/assets/images/blogBg.png';
 
 const GlobalStyle = createGlobalStyle`
