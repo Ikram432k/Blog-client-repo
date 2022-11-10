@@ -43,13 +43,6 @@ const ViewPost =({postid}:id)=>{
         }
     }
     const[comments,setComments] =useState<any[]>([]);
-    // const[emptyMsg,setEmptyMsg] =useState<string>();
-    // const[empMsg,setEmpMsg] =useState<boolean>(false);
-    // useEffect(()=>{
-    //     setEmpMsg(true);
-    //     // console.log(emptyMsg)
-    // },[emptyMsg]);
-
     const getcomment=async()=>{
         try{
             const response = await axios.get(`http://localhost:3000/api/posts/${postid}/postComments`);
