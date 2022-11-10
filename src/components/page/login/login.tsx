@@ -17,25 +17,18 @@ const Login = (props:propsFunction) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-
     const navigate = useNavigate();
-
     const [user, setUser] = useState<usercredentials>({
         username: '',
         password: ''
     })
     const [errMsg,setMsg] = useState<string>();
-
     useEffect(()=>{
         setMsg("");
     },[user])
-
-
-
     const handleChange = (e: any) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
-
     const validation = () => {
         const { username, password } = user;
         if (!username || !password) {
@@ -44,14 +37,12 @@ const Login = (props:propsFunction) => {
         }
         return true;
     }
-
     const clearForm = () => {
         setUser({
             username: '',
             password: ''
         });
     }
-
     const loginUser = async () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/login`, user);
@@ -69,7 +60,6 @@ const Login = (props:propsFunction) => {
             return err;
         }
     }
-
     const submitForm = (e: any) => {
         e.preventDefault()
         if (validation()) {
@@ -77,8 +67,6 @@ const Login = (props:propsFunction) => {
         }
         clearForm();
     }
-
-
     return (
         <div className='mainpage'>
             <div className='pageForm'>
@@ -86,7 +74,6 @@ const Login = (props:propsFunction) => {
                     <h2>
                         Sign in to your account
                     </h2>
-                    {/* <Link to="/signup">Or sign up for a new account</Link> */}
                 </div>
                 <form className='loginForm'>
                     <div className='box'>
