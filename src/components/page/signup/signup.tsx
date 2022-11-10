@@ -13,11 +13,9 @@ const Signup =()=>{
         password:'',
         confirmPassword:''
     })
-
     const handleChange=(e: any)=>{
         setUser({...user,[e.target.name]:e.target.value});
     }
-
     const validation=()=>{
         const{username,password,confirmPassword}=user;
         if(!username || !password || !confirmPassword){
@@ -26,7 +24,6 @@ const Signup =()=>{
         }
         return true;
     }
-
     const clearForm=()=>{
         setUser({
             username:'',
@@ -34,13 +31,11 @@ const Signup =()=>{
             confirmPassword:''
         });
     }
-
     const submitForm=()=>{
         if(validation()){
             signupUser();
         }
     }
-    
     const signupUser =async()=>{
         try{
         await axios.post(`http://localhost:3000/api/signup`,user);
@@ -49,7 +44,6 @@ const Signup =()=>{
             return err;
         }
     }
-
     return(
         <div className='mainpage'>
         <div className='pageForm'>
@@ -57,7 +51,6 @@ const Signup =()=>{
                 <h2>
                 Sign up to create your account
                 </h2>
-                {/* <Link to="/login">Or login if account already exists</Link> */}
             </div>
             <form className='loginForm'>
                 <div className='box'>
