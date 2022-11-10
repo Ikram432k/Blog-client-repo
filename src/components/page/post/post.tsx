@@ -15,7 +15,6 @@ const Post =()=>{
     const[post,setPost] = useState<Array<{ _id: string, title: string ,text: string, author: {username:string},timestamp: Date}>>([]);
     const postContainer =async()=>{
         try{
-        //  console.log(id);   
         const response = await axios.get(`http://localhost:3000/api/posts/${id}`);
         const data = response.data.post;
         let temp = [];
