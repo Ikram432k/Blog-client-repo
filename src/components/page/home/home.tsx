@@ -9,7 +9,6 @@ interface userName{
 }
 const Home =(user:userName)=>{
     // const[visibleP,setVisible]=useState<boolean>(true)
-
     useEffect(()=>{
         getPost();
     },[]);
@@ -19,7 +18,6 @@ const Home =(user:userName)=>{
         const response = await axios.get('http://localhost:3000/api/posts');
         const posts = response.data.posts;
         setPost(posts);
-        // console.log(posts);
         }catch(err){
             return err;
         }
