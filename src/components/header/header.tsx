@@ -17,14 +17,6 @@ const Nav =({user}:propsUser)=>{
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[user])
-    // useEffect(()=>{
-
-    //     if(user.username){
-    //         setUserName(user.username);
-    //         setVisible(true);
-    //     }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // },[user])
     const navigate = useNavigate();
     const navStyle={
         color:"white",
@@ -33,7 +25,6 @@ const Nav =({user}:propsUser)=>{
 
     const logout=()=>{
         localStorage.clear();
-        // setVisible(true)
         setVisible(false);
         setUserName('');
         navigate('*')
