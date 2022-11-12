@@ -12,8 +12,8 @@ interface propsFunction{
 const Login = (props:propsFunction) => {
     useEffect(()=>{
         if(localStorage.getItem('userName')){
+            console.log(localStorage.getItem('userName'));
             navigate(`*`);
-            
             // alert(`Already logged in as ${localStorage.getItem('userName')}`)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
