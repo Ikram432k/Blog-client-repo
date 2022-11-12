@@ -19,19 +19,20 @@ const ViewPost =({postid}:id)=>{
     const handleChange=(e: any)=>{
         setPost({...post,[e.target.name]:e.target.value})
         setViewPost();
-        console.log(post)
     }
-    const submitForm =async()=>{
+    const submitForm =async(e: any)=>{
+        e.preventDefault();
         try{
-            const response = await axios.post(`http://localhost:3000/api/posts/${postid}/update`,post);
-            console.log(response.data);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${postid}/update`,post);
+            closeBtn(e);
         }catch(err){
             return err
         }
     }
     const postContainer =async()=>{
         try{
-        const response = await axios.get(`http://localhost:3000/api/posts/${postid}`)
+        const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${postid}`)
         const data = response.data.post;
         setPost(data);
         if(data.comments.length===0){
@@ -45,7 +46,7 @@ const ViewPost =({postid}:id)=>{
     const[comments,setComments] =useState<any[]>([]);
     const getcomment=async()=>{
         try{
-            const response = await axios.get(`http://localhost:3000/api/posts/${postid}/postComments`);
+            const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${postid}/postComments`);
             const data = response.data;
             // if(response.data.message){
             //     console.log(response.data.message);
@@ -59,7 +60,7 @@ const ViewPost =({postid}:id)=>{
     const deletePostComment=async(commentid: string)=>{
         try{
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios.post(`http://localhost:3000/api/posts/${postid}/comment/${commentid}`);
+        const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${postid}/comment/${commentid}`);
         getcomment();
         }catch(err){
             return err;
@@ -80,7 +81,7 @@ const ViewPost =({postid}:id)=>{
         e.preventDefault();
         try{
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios.post(`http://localhost:3000/api/posts/${postid}/comment`,commentData);
+        const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${postid}/comment`,commentData);
         getcomment();
         closeForm();
         }catch(err){
