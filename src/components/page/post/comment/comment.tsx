@@ -16,10 +16,10 @@ const Comment =({postId}:link)=>{
         getcomment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[commentData]);
-    const[comments,setComments] = useState<Array<{ _id: string, name: string ,comment: string,timestamp: Date}>>([]);
+    const[comments,setComments] = useState<Array<{ _id: string, name: string ,comment: string,date: Date}>>([]);
     const getcomment=async()=>{
         try{
-            const response = await axios.get(`http://localhost:3000/api/posts/${postId}/postComments`);
+            const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${postId}/postComments`);
             const data = response.data;
             setComments([...data]);
         }catch(err){
@@ -34,7 +34,7 @@ const Comment =({postId}:link)=>{
         e.preventDefault();
         try{
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios.post(`http://localhost:3000/api/posts/${postId}/comment`,commentData);
+        const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${postId}/comment`,commentData);
         closeForm();
         }catch(err){
             return err;
@@ -78,7 +78,7 @@ const Comment =({postId}:link)=>{
                     <div className="contentCom" key={i}>
                         <p className="name">{obj.name} says ,</p>
                         <p className="name">"{obj.comment}"</p>
-                        <p>Posted on {formattime(obj.timestamp)}</p>
+                        <p>Posted on {formattime(obj.date)}</p>
                     </div>
                 ))}
             </div>
