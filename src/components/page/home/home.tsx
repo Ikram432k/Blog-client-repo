@@ -25,7 +25,7 @@ const Home =(user:userName)=>{
     return(
         <div className="posts">
             <div className="top" >
-                <p>
+                <p className="cmticon">
                     Post your own views and perspectives as blog by signing up <Link to='/signup'>signing up <span className="material-symbols-outlined">login</span></Link> or <Link to='/login'>loging in <span className="material-symbols-outlined">logout</span></Link>.
                 </p>
             </div>
