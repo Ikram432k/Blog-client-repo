@@ -13,10 +13,12 @@ useEffect(()=>{
 },[])
 const[userToken,setToken] =useState<string>('');
 const[allPosts,setAllPost] = useState<Array<{ _id: string, title: string ,comments: Array<[]>,timestamp: Date}>>([]); 
-const[post,setPost] = useState<any>([])
+const[post,setPost] = useState<{title:string,text:string}>({
+    title:'',
+    text:''
+})
     const handleChange=(e: any)=>{
         setPost({...post,[e.target.name]:e.target.value})
-        console.log(post)
     }
     const validation = () => {
         const { title, text } = post;
@@ -26,16 +28,25 @@ const[post,setPost] = useState<any>([])
         }
         return true;
     }
-    const submitForm =async()=>{
+    const submitForm =async(e: any)=>{
+        e.preventDefault();
         if (validation()){
             try{
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const response = await axios.post(`http://localhost:3000/api/posts/createpost`,post);
+                const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/createpost`,post);
+                clearForm();
                 getPost();
             }catch(err){
                 return err
             }
         }
+    }
+    const clearForm = () => {
+        setShow(false);
+        setPost({
+            title: '',
+            text: ''
+        });
     }
     const setUserDetails=()=>{
         const token = localStorage.getItem('token')!;
@@ -45,16 +56,21 @@ const[post,setPost] = useState<any>([])
         try{
             axios.defaults.headers.common = {'Authorization': `bearer ${userToken}`}
 
-        const response = await axios.post(`http://localhost:3000/api/posts/${id}/delete`);
-        console.log(response);
+        const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${id}/delete`);
         getPost();
+        if(response.data.message){
+            alert('post deleted')
+        }
         }catch(err){
             return err;
         }
     }
     const getPost =async()=>{
         try{
-            const response = await axios.get(`http://localhost:3000/api/posts/${userid}/userposts`);
+            const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${userid}/userposts`);
+            if(response.data.message){
+                return alert('No Post available f')
+            }
             const data = response.data.posts;
             setAllPost(data);
         }catch(err){
@@ -72,6 +88,7 @@ const[post,setPost] = useState<any>([])
     const formattime=(time:Date)=>{
         return moment(time).format('MMMM Do YYYY, h:mm:ss a');
     }
+    
     return(
         <div className="dashContent">
             <div className='dashContainer' >
