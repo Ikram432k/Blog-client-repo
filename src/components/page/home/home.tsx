@@ -26,7 +26,7 @@ const Home =(user:userName)=>{
         <div className="posts">
             <div className="top" >
                 <p className="cmticon">
-                    Post your own views and perspectives as blog by signing up <Link to='/signup'><span className="material-symbols-outlined">login</span></Link> or loging in<Link to='/login'> <span className="material-symbols-outlined">logout</span></Link>.
+                    Post your own views and perspectives as blog by signing up <Link to='/signup'><span className="material-symbols-outlined">login</span></Link> or loging in <Link to='/login'> <span className="material-symbols-outlined">logout</span></Link>.
                 </p>
             </div>
             <div className="main">
