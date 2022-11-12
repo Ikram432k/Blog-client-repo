@@ -15,7 +15,7 @@ const Post =()=>{
     const[post,setPost] = useState<Array<{ _id: string, title: string ,text: string, author: {username:string},timestamp: Date}>>([]);
     const postContainer =async()=>{
         try{
-        const response = await axios.get(`http://localhost:3000/api/posts/${id}`);
+        const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${id}`);
         const data = response.data.post;
         let temp = [];
         temp.push(data);
