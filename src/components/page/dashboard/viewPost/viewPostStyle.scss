@@ -21,24 +21,23 @@
       margin-top: 5px;
       border: 1px solid white;
     }
-         .titlearea{
-        width: inherit;
-        height: auto;
-        margin-bottom: 10px;
-        background: transparent;
-        font-size: 1.5rem;
-        color: white;
-        border: 0;
+    .titlearea{
+    width: inherit;
+    height: auto;
+    margin-bottom: 10px;
+    background: transparent;
+    font-size: 1.5rem;
+    color: white;
+    border: 0;
     }
-         .textarea{
-          font-size: 1rem;
-          color: white;
-        width: 550px;
+    .textarea{
+    font-size: 1rem;
+    color: white;
+    width: 550px;
     height: 250px;
     margin-bottom: 10px;
     background: transparent;
     border: 0;
-
     }
     @media only screen and (max-width:768px){
       width: 270px;
@@ -47,6 +46,17 @@
         width: inherit;
       }
     }
+}
+textarea{
+  &::-webkit-scrollbar {
+    width: 1vw;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #5555;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #7775;
+  }
 }
 .viewComment {
   display: flex;
