@@ -15,7 +15,7 @@ const Home =(user:userName)=>{
     const [post,setPost] = useState<any[]>([])
     const getPost =async()=>{
         try{
-        const response = await axios.get('http://localhost:3000/api/posts');
+        const response = await axios.get('https://web-production-9701.up.railway.app/api/posts');
         const posts = response.data.posts;
         setPost(posts);
         }catch(err){
