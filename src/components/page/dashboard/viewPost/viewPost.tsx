@@ -147,8 +147,7 @@ const ViewPost =({postid}:id)=>{
                     </div>
                     <div>
                         <button className="comment-trash" onClick={(e:any)=>deletePostComment(obj._id)}>
-                            <i className='fas fa-trash'></i>
-                        </button>
+                        <span className="material-symbols-outlined">delete</span></button>
                     </div>
                 </div>
             ))}
