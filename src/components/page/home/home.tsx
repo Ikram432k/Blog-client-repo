@@ -26,7 +26,7 @@ const Home =(user:userName)=>{
         <div className="posts">
             <div className="top" >
                 <p>
-                    Post your own views and perspectives as blog by signing up <Link to='/signup'>signing up <i className='fas fa-sign-in-alt'></i></Link> or <Link to='/login'>loging in <i className='fas fa-sign-in-alt'></i></Link>.
+                    Post your own views and perspectives as blog by signing up <Link to='/signup'>signing up <span className="material-symbols-outlined">login</span>signup</Link> or <Link to='/login'>loging in <span className="material-symbols-outlined">Slogout</span></Link>.
                 </p>
             </div>
             <div className="main">
