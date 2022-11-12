@@ -34,7 +34,7 @@ const Home =(user:userName)=>{
                     <div className="div" key={i}>
                         <h3>{obj.title}</h3>
                         <p>posted by- {obj.author.username}</p>
-                        <p><i className='far fa-comment'></i>{obj.comments.length}</p>
+                        <p><span className="material-symbols-outlined">comment</span>{obj.comments.length}</p>
 
                         <Link to={`/post/${obj._id}`}>
                             <button className="btn">view post</button>
