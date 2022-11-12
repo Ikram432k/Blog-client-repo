@@ -10,15 +10,15 @@ interface propsFunction{
     getUser:Function
 }
 const Login = (props:propsFunction) => {
+    const navigate = useNavigate();
+
     useEffect(()=>{
         if(localStorage.getItem('userName')){
-            console.log(localStorage.getItem('userName'));
             navigate(`*`);
-            // alert(`Already logged in as ${localStorage.getItem('userName')}`)
+            alert(`Already logged in as ${localStorage.getItem('userName')}`)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-    const navigate = useNavigate();
     const [user, setUser] = useState<usercredentials>({
         username: '',
         password: ''
