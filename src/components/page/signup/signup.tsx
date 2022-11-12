@@ -38,7 +38,7 @@ const Signup =()=>{
     }
     const signupUser =async()=>{
         try{
-        await axios.post(`http://localhost:3000/api/signup`,user);
+        await axios.post(`https://web-production-9701.up.railway.app/api/signup`,user);
         clearForm();
         }catch(err){
             return err;
