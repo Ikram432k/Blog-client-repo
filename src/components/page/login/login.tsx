@@ -13,7 +13,7 @@ const Login = (props:propsFunction) => {
     useEffect(()=>{
         if(localStorage.getItem('userName')){
             navigate(`*`);
-            // alert(`Already logged in as ${localStorage.getItem('userName')}`)
+            alert(`Already logged in as ${localStorage.getItem('userName')}`)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
