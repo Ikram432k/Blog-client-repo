@@ -45,7 +45,7 @@ const Login = (props:propsFunction) => {
     }
     const loginUser = async () => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/login`, user);
+            const response = await axios.post(`https://web-production-9701.up.railway.app/api/login`, user);
             if(response.data.info){
                 setMsg(response.data.info.message);
                 return;
