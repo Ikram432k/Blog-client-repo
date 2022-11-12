@@ -135,7 +135,7 @@ const[post,setPost] = useState<{title:string,text:string}>({
                                 </div>
                                 <div>
                                     <button className="post-trash"onClick={(e:any)=>deletePost(obj._id)}>
-                                        <i className='fas fa-trash'></i>
+                                        <span className="material-symbols-outlined">delete</span>
                                     </button>
                                 </div>
                             </div>
