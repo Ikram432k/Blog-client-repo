@@ -1,8 +1,8 @@
-# My Blog (Client)
+# Blog (Client)
 
-<!-- <p><a href="https://kfig21.github.io/blog_client/" target="_blank" rel="noopener noreferrer">View the project here!</a> 👀</p>
+<p><a href="https://ikram432k.github.io/blog-client-repo/" target="_blank" rel="noopener noreferrer">View the project here!</a> 👀</p>
 
-<p>Blog API repo - <a href="https://github.com/KFig21/blog_api" target="_blank" rel="noopener noreferrer">click here!</a></p> -->
+<p>Blog API repo - <a href="https://github.com/Ikram432k/Project-Blog-API" target="_blank" rel="noopener noreferrer">click here!</a></p>
 
 <h3>Summary</h3>
 <p>This project was made for <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/blog-api" target="_blank" rel="noopener noreferrer">The Odin Project's</a> NodeJS curriculum. The goal of the project was to build a restful API that can be used to build a blog client and a blog CMS, it was made with the React JS Library, NodeJs, Express, and MongoDb.</p>
