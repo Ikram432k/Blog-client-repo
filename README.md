@@ -28,15 +28,19 @@
 
 <h4>Home screen</h4>
 
-![](screenshot-1.PNG)
+![](src/components/assets/demoImages/blogHome.png)
 
 <h4>Post screen</h4>
 
-![](screenshot-2.PNG)
+![](src/components/assets/demoImages/blogPost.png)
 
 <h4>Comments</h4>
 
-![](screenshot-3.PNG)
+![](src/components/assets/demoImages/blogComment.png)
+
+<h4>Admin home page</h4>
+
+![](src/components/assets/demoImages/adminHomePage.png)
 
 
 ---
