@@ -32,6 +32,7 @@ const[post,setPost] = useState<{title:string,text:string}>({
         e.preventDefault();
         if (validation()){
             try{
+                axios.defaults.headers.common = {'Authorization': `bearer ${userToken}`}
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/createpost`,post);
                 clearForm();
@@ -57,6 +58,12 @@ const[post,setPost] = useState<{title:string,text:string}>({
             axios.defaults.headers.common = {'Authorization': `bearer ${userToken}`}
 
         const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${id}/delete`);
+        setAllPost(current =>
+            current.filter(Post => {
+              // 👇️ remove object that has id equal to id
+              return Post._id !== id;
+            }),
+        );
         getPost();
         if(response.data.message){
             alert('post deleted')
@@ -69,10 +76,11 @@ const[post,setPost] = useState<{title:string,text:string}>({
         try{
             const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${userid}/userposts`);
             if(response.data.message){
-                return alert('No Post available f')
+                return ;
             }
             const data = response.data.posts;
             setAllPost(data);
+            
         }catch(err){
             return err;
         }
@@ -125,6 +133,7 @@ const[post,setPost] = useState<{title:string,text:string}>({
                         <button className='head-btn' onClick={displayNone}>Cancel</button>
                     </div>
                 </form>
+                {allPosts.length===0 && <h2>Your blog is empty</h2>}
                 <div className="dashMain">
                     {allPosts.map((obj,i)=>(
                         <div className='dashCard-in' key={i}>
