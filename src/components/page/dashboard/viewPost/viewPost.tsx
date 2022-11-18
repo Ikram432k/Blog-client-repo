@@ -43,15 +43,13 @@ const ViewPost =({postid}:id)=>{
             return err;
         }
     }
-    const[comments,setComments] =useState<any[]>([]);
+    // const[comments,setComments] =useState<any[]>([]);
+    const[comments,setComments] =useState<Array<{_id:string,name:string,comment:string}>>([]);
+
     const getcomment=async()=>{
         try{
             const response = await axios.get(`https://web-production-9701.up.railway.app/api/posts/${postid}/postComments`);
             const data = response.data;
-            // if(response.data.message){
-            //     console.log(response.data.message);
-            //     // setEmptyMsg(response.data.message);
-            // } 
             setComments([...data]);
         }catch(err){
             return err;
@@ -61,6 +59,12 @@ const ViewPost =({postid}:id)=>{
         try{
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const response = await axios.post(`https://web-production-9701.up.railway.app/api/posts/${postid}/comment/${commentid}`);
+        setComments(current =>
+            current.filter(Cmt => {
+              // 👇️ remove object that has id equal to id
+              return Cmt._id !== commentid;
+            }),
+        );
         getcomment();
         }catch(err){
             return err;
@@ -117,7 +121,6 @@ const ViewPost =({postid}:id)=>{
             <div className="postComment">
             <h3>Comments</h3>
             {/* <p><i className='far fa-comment'></i> {post.comments.length}</p> */}
-            {/* <p style={{display: empMsg ? 'block' : 'none' }}>{emptyMsg}</p> */}
             <form className="commentForm">
                 <p>Add new comment</p>
                 <div className="field">
@@ -139,6 +142,7 @@ const ViewPost =({postid}:id)=>{
                 </div>
                 <button onClick={submitCommentForm}>comment</button>
             </form>
+            {comments.length===0 && <h3>no comments</h3>}
             {comments.map((obj,i)=>(
                 <div className="viewComment" key={i}>
                     <div>
