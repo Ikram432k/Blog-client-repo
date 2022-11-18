@@ -72,8 +72,10 @@ const Comment =({postId}:link)=>{
                 </div>
                 <button onClick={submitForm}>comment</button>
             </form>
+            {comments.length===0 && <h3>no comments</h3>}
+            {comments.length>0 && 
             <div className="cmt-div">
-                <h3>Comments</h3>
+                <h3>Comments ({comments.length})</h3>
                 {comments.map((obj,i)=>(
                     <div className="contentCom" key={i}>
                         <p className="name">{obj.name} says ,</p>
@@ -81,7 +83,7 @@ const Comment =({postId}:link)=>{
                         <p>Posted on {formattime(obj.date)}</p>
                     </div>
                 ))}
-            </div>
+            </div>}
         </div>
     )
 }
